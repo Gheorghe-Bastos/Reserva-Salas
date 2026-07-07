@@ -42,17 +42,9 @@ const roomAmenities: Record<string, { icon: string; title: string }[]> = {
   ],
 }
 
-const capacityLabels: Record<string, string> = {
-  "Sala Ártico": "4-8 pessoas",
-  "Sala Pacífico": "10-15 pessoas",
-  "Sala Andes": "2-4 pessoas",
-  "Sala Saara": "1-2 pessoas",
-  "Sala Amazônia": "20-30 pessoas",
-}
-
 export function RoomCard({ room, onReserve, onInfo }: RoomCardProps) {
   const amenities = roomAmenities[room.name] ?? []
-  const capacityLabel = capacityLabels[room.name] ?? `${room.capacity} pessoas`
+  const capacityLabel = `${room.capacity} ${room.capacity === 1 ? "pessoa" : "pessoas"}`
   const isUnavailable = room.name === "Sala Pacífico"
 
   return (
