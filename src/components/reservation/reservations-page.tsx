@@ -156,7 +156,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-                className="appearance-none bg-surface border border-outline-variant rounded-lg px-3 py-2 font-label-md text-label-md text-on-surface cursor-pointer pr-8"
+                className="appearance-none font-bold bg-surface border border-outline-variant rounded-lg px-3 py-2 font-label-lg text-label-lg text-on-surface cursor-pointer pr-8"
               >
                 <option value="asc">Horário ↑</option>
                 <option value="desc">Horário ↓</option>
