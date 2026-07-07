@@ -205,6 +205,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
         onOpenChange={setModalOpen}
         reservation={selectedReservation}
         roomId={roomId}
+        roomCapacity={room?.capacity ?? 0}
         onCreate={handleCreate}
         onUpdate={handleUpdate}
         onDelete={handleDelete}

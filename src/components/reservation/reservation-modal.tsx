@@ -11,6 +11,7 @@ interface ReservationModalProps {
   onOpenChange: (open: boolean) => void
   reservation?: ReservationWithRoom | null
   roomId: string
+  roomCapacity: number
   onCreate?: (data: {
     reservation_name: string
     participant_name: string
@@ -38,6 +39,7 @@ function fmtTime(iso: string) {
 function ReservationForm({
   reservation,
   roomId,
+  roomCapacity,
   onCreate,
   onUpdate,
   onDelete,
@@ -45,6 +47,7 @@ function ReservationForm({
 }: {
   reservation?: ReservationWithRoom | null
   roomId: string
+  roomCapacity: number
   onCreate?: ReservationModalProps["onCreate"]
   onUpdate?: ReservationModalProps["onUpdate"]
   onDelete?: ReservationModalProps["onDelete"]
@@ -76,6 +79,8 @@ function ReservationForm({
     if (!participantName.trim()) errors.participant_name = "Nome do responsável é obrigatório"
     if (!participantsCount.trim() || Number(participantsCount) < 1)
       errors.participants_count = "Quantidade mínima é 1"
+    else if (Number(participantsCount) > roomCapacity)
+      errors.participants_count = `Excede a capacidade da sala (${roomCapacity} pessoas)`
     if (!start) errors.starts_at = "Horário de início é obrigatório"
     if (!end) errors.ends_at = "Horário de término é obrigatório"
     if (start && end && start >= end)
@@ -232,6 +237,7 @@ export function ReservationModal({
   onOpenChange,
   reservation,
   roomId,
+  roomCapacity,
   onCreate,
   onUpdate,
   onDelete,
@@ -259,6 +265,7 @@ export function ReservationModal({
           key={isEdit ? reservation!.id : "new"}
           reservation={reservation}
           roomId={roomId}
+          roomCapacity={roomCapacity}
           onCreate={onCreate}
           onUpdate={onUpdate}
           onDelete={onDelete}
