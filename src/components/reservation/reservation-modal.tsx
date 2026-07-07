@@ -91,14 +91,20 @@ function ReservationForm({
     setSaving(true)
     setError(null)
 
-    const today = new Date().toISOString().split("T")[0]
+    function localToUtcIso(time: string): string {
+      const [h, m] = time.split(":").map(Number)
+      const d = new Date()
+      d.setHours(h, m, 0, 0)
+      return d.toISOString()
+    }
+
     const dto = {
       reservation_name: reservationName.trim(),
       participant_name: participantName.trim(),
       participants_count: Number(participantsCount),
       room_id: roomId,
-      starts_at: `${today}T${start}:00`,
-      ends_at: `${today}T${end}:00`,
+      starts_at: localToUtcIso(start),
+      ends_at: localToUtcIso(end),
     }
 
     const errMsg = isEdit

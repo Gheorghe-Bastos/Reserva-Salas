@@ -5,13 +5,13 @@ function getNow(): Date {
   return new Date()
 }
 
-export function getStatus(startsAt: string, endsAt: string): ReservationStatus {
-  const now = getNow()
+export function getStatus(startsAt: string, endsAt: string, now?: Date): ReservationStatus {
+  const n = now ?? getNow()
   const start = new Date(startsAt)
   const end = new Date(endsAt)
 
-  if (now >= start && now < end) return "ocorrendo"
-  if (start > now) return "agendada"
+  if (n >= start && n < end) return "ocorrendo"
+  if (start > n) return "agendada"
   return "finalizada"
 }
 

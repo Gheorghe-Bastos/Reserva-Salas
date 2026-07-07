@@ -7,7 +7,7 @@ import { ReservationItem } from "./reservation-item"
 import { ReservationModal } from "./reservation-modal"
 import { useRooms } from "../../hooks/useRooms"
 import { useReservations } from "../../hooks/useReservations"
-import { getStatus } from "../../hooks/useReservationStatus"
+import { getStatus, useNow } from "../../hooks/useReservationStatus"
 import type { ReservationWithRoom } from "../../types/reservation"
 
 interface ReservationsPageProps {
@@ -36,6 +36,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc")
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedReservation, setSelectedReservation] = useState<ReservationWithRoom | null>(null)
+  const now = useNow()
 
   const { ongoing, upcoming, finished } = useMemo(() => {
     const ongoing: ReservationWithRoom[] = []
@@ -43,7 +44,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
     const finished: ReservationWithRoom[] = []
 
     for (const r of reservations) {
-      const status = getStatus(r.starts_at, r.ends_at)
+      const status = getStatus(r.starts_at, r.ends_at, now)
       if (status === "ocorrendo") ongoing.push(r)
       else if (status === "agendada") upcoming.push(r)
       else finished.push(r)
@@ -54,7 +55,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
       upcoming: sortReservations(upcoming, sortOrder),
       finished: sortReservations(finished, sortOrder),
     }
-  }, [reservations, sortOrder])
+  }, [reservations, sortOrder, now])
 
   const handleReservationClick = useCallback((reservation: ReservationWithRoom) => {
     setSelectedReservation(reservation)

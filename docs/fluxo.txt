@@ -1,8 +1,0 @@
-FLUXO DO COMPORTAMENTO DO SISTEMA:
-
-Cliente envia requisição para o servidor;
-Servidor responde e envia os arquivos da aplicação;
-O navegador renderiza a interface;
-Usuário vai interagir com o sistema;
-Usuário clica para criar uma sala, escreve o nome da sala e a capacidade de pessoas na sala (useReservation);
-O cliente faz uma requisição ao servidor;
