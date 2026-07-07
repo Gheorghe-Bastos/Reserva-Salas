@@ -184,3 +184,14 @@ export async function deleteReservation(id: string): Promise<void> {
 
   if (error) throw new Error(error.message)
 }
+
+export async function clearFinishedReservations(roomId: string): Promise<void> {
+  const now = new Date().toISOString()
+  const { error } = await supabase
+    .from('reservations')
+    .delete()
+    .eq('room_id', roomId)
+    .lt('ends_at', now)
+
+  if (error) throw new Error(error.message)
+}

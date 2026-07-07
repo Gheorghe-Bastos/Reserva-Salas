@@ -4,6 +4,7 @@ import {
   createReservation as apiCreate,
   updateReservation as apiUpdate,
   deleteReservation as apiDelete,
+  clearFinishedReservations as apiClearFinished,
   checkReservationConflict,
 } from "../services/supabaseSDK"
 import type {
@@ -122,6 +123,21 @@ export function useReservations(filters?: UseReservationsFilters) {
     }
   }
 
+  async function clearFinished(): Promise<string | null> {
+    if (!roomId) return "Sala não selecionada"
+    setActionLoading(true)
+    try {
+      await apiClearFinished(roomId)
+      setError(null)
+      setKey((k) => k + 1)
+      return null
+    } catch (err) {
+      return err instanceof Error ? err.message : "Erro ao limpar reservas"
+    } finally {
+      setActionLoading(false)
+    }
+  }
+
   return {
     reservations,
     loading,
@@ -131,5 +147,6 @@ export function useReservations(filters?: UseReservationsFilters) {
     create,
     update,
     remove,
+    clearFinished,
   }
 }

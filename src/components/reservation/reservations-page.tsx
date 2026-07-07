@@ -28,7 +28,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
   const room = rooms.find((r) => r.name === roomName)
   const roomId = room?.id ?? ""
 
-  const { reservations, loading, error, create, update, remove } = useReservations(
+  const { reservations, loading, error, create, update, remove, clearFinished } = useReservations(
     roomId ? { roomId } : undefined
   )
 
@@ -84,13 +84,15 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
   function renderSection(
     title: string,
     items: ReservationWithRoom[],
-    icon: React.ReactNode
+    icon: React.ReactNode,
+    action?: React.ReactNode
   ) {
     return (
       <section className="mb-gutter">
         <div className="flex items-center gap-2 mb-3">
           {icon}
           <h2 className="font-headline-sm text-headline-sm text-on-surface">{title}</h2>
+          {action}
           <span className="font-label-md text-label-md text-outline ml-auto">
             {items.length}
           </span>
@@ -156,7 +158,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-                className="flex justify-center items-center appearance-none font-bold bg-surface border border-outline-variant rounded-xl px-3 py-2 font-label-lg text-sm md:text-md md:text-label-lg lg:text-label-lg text-on-surface cursor-pointer pr-8"
+                className="flex justify-center items-center appearance-none font-bold bg-surface border border-outline-variant rounded-xl px-3 py-2 font-label-md text-sm md:text-md text-label-xs md:text-label-lg lg:text-label-lg text-on-surface cursor-pointer pr-8"
               >
                 <option value="asc">Horário ↑</option>
                 <option value="desc">Horário ↓</option>
@@ -192,7 +194,16 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
         {renderSection(
           "Encerradas",
           finished,
-          <Clock size={18} className="text-outline" />
+          <Clock size={18} className="text-outline" />,
+          finished.length > 0 && (
+            <Button
+              onClick={() => clearFinished?.()}
+              variant="outline"
+              className="font-label-bold cursor-pointer text-label-bold text-error hover:opacity-80 transition-opacity"
+            >
+              Limpar Reservas Encerradas
+            </Button>
+          )
         )}
       </main>
 
