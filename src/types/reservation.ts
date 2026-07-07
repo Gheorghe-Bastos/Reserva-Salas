@@ -17,7 +17,7 @@ export interface CreateReservationDTO {
     ends_at: string
 }
 
-export interface UpdateReservationDTO extends Partial<CreateReservationDTO> { }
+export type UpdateReservationDTO = Partial<CreateReservationDTO>
 
 export type ReservationStatus =
     |"agendada"

@@ -10,4 +10,4 @@ export interface CreateRoomDTO {
     capacity: number
 }
 
-export interface UpdateRoomDTO extends Partial<CreateRoomDTO> { }
+export type UpdateRoomDTO = Partial<CreateRoomDTO>

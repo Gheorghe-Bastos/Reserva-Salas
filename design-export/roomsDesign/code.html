@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ReserveSuíte - Seleção de Salas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar for clean corporate look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9dadc;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#709bfe",
+                    "inverse-primary": "#b2c5ff",
+                    "primary": "#003d9b",
+                    "inverse-on-surface": "#f0f1f3",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-container-high": "#e7e8ea",
+                    "background": "#f8f9fb",
+                    "primary-container": "#0052cc",
+                    "on-secondary-container": "#003179",
+                    "surface-dim": "#d9dadc",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "secondary-fixed-dim": "#b1c6ff",
+                    "tertiary": "#7b2600",
+                    "surface-container-low": "#f3f4f6",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#434654",
+                    "outline-variant": "#c3c6d6",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9fb",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "tertiary-container": "#a33500",
+                    "tertiary-fixed": "#ffdbcf",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001848",
+                    "on-tertiary-fixed-variant": "#812800",
+                    "primary-fixed": "#dae2ff",
+                    "on-primary-container": "#c4d2ff",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "on-secondary-fixed-variant": "#00419d",
+                    "surface-variant": "#e1e2e4",
+                    "surface-container-highest": "#e1e2e4",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "surface-container": "#edeef0",
+                    "surface": "#f8f9fb",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#001946",
+                    "secondary": "#285ab9",
+                    "secondary-fixed": "#d9e2ff",
+                    "outline": "#737685",
+                    "on-tertiary-container": "#ffc6b2",
+                    "surface-tint": "#0c56d0",
+                    "inverse-surface": "#2e3132"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "stack-gap": "12px",
+                    "gutter": "16px",
+                    "card-padding": "20px",
+                    "margin-desktop": "32px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24 md:pb-0 md:pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface dark:bg-surface-container shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="meeting_room">meeting_room</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ReserveSuíte</h1>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary py-1 px-1 transition-all" href="#">Salas</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant/50 transition-colors py-1 px-1" href="#">Calendário</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant/50 transition-colors py-1 px-1" href="#">Perfil</a>
+</nav>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a facility manager with a friendly expression, captured in high-resolution with soft, natural studio lighting. The background is a clean, modern office environment with blurred glass partitions and architectural lines. The aesthetic is corporate and high-end, using a neutral color palette that complements a professional business platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPrYoKtruwpeOqjVjumwMPaOMZBZzVWQlYw8818-v8gwSSMRpPJJkno43m_CsuJIqw2Ta2OquR8HEtEINGCUskdxEeEJQvOEjgPTozIZ2eXUsOs8u6S6_WuYI1wTx_Kt2t7ZyHudcUcfU0zjuymGu2zkTVnScF6vNOIIY5aEJe4XKPv50GAmOhtS3i2Ul-2uzJh1L5i22Y1tY7dkXD3MTcDueGwD3iKxhOmiOAxcbJGBM9eVV0bTFqrIJgC02eXzC0B2J0Cp6g45lw">
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-8">
+<!-- Header Section -->
+<header class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Selecione uma Sala</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Escolha o ambiente ideal para sua próxima reunião produtiva.</p>
+</header>
+<!-- Bento Grid / Cards Container -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Room Card 1: Ártico -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+
+<div class="p-card-padding flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Sala Ártico</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">4-8 pessoas</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="wifi" title="Wi-Fi">wifi</span>
+<span class="material-symbols-outlined text-outline" data-icon="tv" title="Monitor/TV">tv</span>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-grow bg-primary text-on-primary font-label-bold text-label-bold py-3 rounded-lg hover:bg-primary-container active:scale-95 transition-all">RESERVAR AGORA</button>
+<button class="px-4 border border-outline-variant text-primary rounded-lg hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Room Card 2: Pacífico -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+
+<div class="p-card-padding flex flex-col flex-grow opacity-90">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Sala Pacífico</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">10-15 pessoas</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="videocam" title="Videoconferência">videocam</span>
+<span class="material-symbols-outlined text-outline" data-icon="wifi" title="Wi-Fi">wifi</span>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-grow bg-surface-variant text-on-surface-variant/50 font-label-bold text-label-bold py-3 rounded-lg cursor-not-allowed" disabled="">INDISPONÍVEL</button>
+<button class="px-4 border border-outline-variant text-primary rounded-lg hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Room Card 3: Andes -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+
+<div class="p-card-padding flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Sala Andes</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">2-4 pessoas</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="draw" title="Lousa">draw</span>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-grow bg-primary text-on-primary font-label-bold text-label-bold py-3 rounded-lg hover:bg-primary-container active:scale-95 transition-all">RESERVAR AGORA</button>
+<button class="px-4 border border-outline-variant text-primary rounded-lg hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Room Card 4: Saara -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+
+<div class="p-card-padding flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Sala Saara</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">1-2 pessoas</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="coffee" title="Café">coffee</span>
+<span class="material-symbols-outlined text-outline" data-icon="lock" title="Privativa">lock</span>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-grow bg-primary text-on-primary font-label-bold text-label-bold py-3 rounded-lg hover:bg-primary-container active:scale-95 transition-all">RESERVAR AGORA</button>
+<button class="px-4 border border-outline-variant text-primary rounded-lg hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Room Card 5: Amazônia -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+
+<div class="p-card-padding flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Sala Amazônia</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">20-30 pessoas</span>
+</div>
+</div>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="mic" title="Áudio Premium">mic</span>
+<span class="material-symbols-outlined text-outline" data-icon="present_to_all" title="Projetor">present_to_all</span>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-3">
+<button class="flex-grow bg-primary text-on-primary font-label-bold text-label-bold py-3 rounded-lg hover:bg-primary-container active:scale-95 transition-all">RESERVAR AGORA</button>
+<button class="px-4 border border-outline-variant text-primary rounded-lg hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-2 pb-safe bg-surface dark:bg-inverse-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined fill-icon" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-[10px]">Salas</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:opacity-80 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-[10px]">Calendário</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:opacity-80 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Perfil</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction: Scale down on click
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple tab highlight simulation
+        const navLinks = document.querySelectorAll('.md\\:flex a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'dark:text-inverse-primary', 'font-bold', 'border-b-2', 'border-primary');
+                    l.classList.add('text-on-surface-variant', 'dark:text-surface-variant');
+                });
+                link.classList.add('text-primary', 'dark:text-inverse-primary', 'font-bold', 'border-b-2', 'border-primary');
+                link.classList.remove('text-on-surface-variant', 'dark:text-surface-variant');
+            });
+        });
+    </script>
+
+
+</body></html>
