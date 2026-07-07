@@ -191,10 +191,10 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
 
       <Button
         onClick={handleNewReservation}
-        className="fixed bottom-24 right-6 w-14 h-14 rounded-full shadow-lg z-40"
-        size="icon"
+        className="fixed bottom-24 right-40 z-40 shadow-lg gap-2 px-4 h-14 rounded-xl"
       >
-        <Plus size={32} />
+        <Plus size={20} />
+        <span className="font-label-bold text-label-bold">Criar Reserva</span>
       </Button>
 
 

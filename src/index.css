@@ -49,37 +49,37 @@
   --color-on-background: #191c1e;
   --color-surface-variant: #e1e2e4;
 
-  --font-family-headline-lg: Inter, sans-serif;
-  --font-family-headline-md: Inter, sans-serif;
-  --font-family-body-lg: Inter, sans-serif;
-  --font-family-body-sm: Inter, sans-serif;
-  --font-family-label-bold: Inter, sans-serif;
-  --font-family-label-md: Inter, sans-serif;
+  --font-headline-lg: "Nunito Sans", sans-serif;
+  --font-headline-md: "Nunito Sans", sans-serif;
+  --font-body-lg: "Nunito Sans", sans-serif;
+  --font-body-sm: "Nunito Sans", sans-serif;
+  --font-label-bold: "Nunito Sans", sans-serif;
+  --font-label-md: "Nunito Sans", sans-serif;
 
-  --font-size-headline-lg: 32px;
-  --font-size-headline-lg--line-height: 40px;
-  --font-size-headline-lg--letter-spacing: -0.02em;
-  --font-size-headline-lg--font-weight: 700;
-  --font-size-headline-lg-mobile: 24px;
-  --font-size-headline-lg-mobile--line-height: 32px;
-  --font-size-headline-lg-mobile--letter-spacing: -0.01em;
-  --font-size-headline-lg-mobile--font-weight: 700;
-  --font-size-headline-md: 20px;
-  --font-size-headline-md--line-height: 28px;
-  --font-size-headline-md--font-weight: 600;
-  --font-size-body-lg: 16px;
-  --font-size-body-lg--line-height: 24px;
-  --font-size-body-lg--font-weight: 400;
-  --font-size-body-sm: 14px;
-  --font-size-body-sm--line-height: 20px;
-  --font-size-body-sm--font-weight: 400;
-  --font-size-label-bold: 12px;
-  --font-size-label-bold--line-height: 16px;
-  --font-size-label-bold--letter-spacing: 0.05em;
-  --font-size-label-bold--font-weight: 600;
-  --font-size-label-md: 12px;
-  --font-size-label-md--line-height: 16px;
-  --font-size-label-md--font-weight: 500;
+  --text-headline-lg: 36px;
+  --text-headline-lg--line-height: 44px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-lg-mobile: 26px;
+  --text-headline-lg-mobile--line-height: 34px;
+  --text-headline-lg-mobile--letter-spacing: -0.01em;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-headline-md: 22px;
+  --text-headline-md--line-height: 30px;
+  --text-headline-md--font-weight: 700;
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 600;
+  --text-body-sm: 15px;
+  --text-body-sm--line-height: 22px;
+  --text-body-sm--font-weight: 600;
+  --text-label-bold: 13px;
+  --text-label-bold--line-height: 18px;
+  --text-label-bold--letter-spacing: 0.05em;
+  --text-label-bold--font-weight: 700;
+  --text-label-md: 13px;
+  --text-label-md--line-height: 18px;
+  --text-label-md--font-weight: 600;
 
   --spacing-base: 4px;
   --spacing-stack-gap: 12px;
@@ -98,7 +98,7 @@
 
 @layer base {
   body {
-    font-family: Inter, sans-serif;
+    font-family: "Nunito Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

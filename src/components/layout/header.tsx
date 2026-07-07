@@ -1,5 +1,4 @@
 import { ArrowLeft, DoorOpen } from "lucide-react"
-import { Avatar } from "../ui/avatar"
 import { Button } from "../ui/button"
 
 interface HeaderProps {
@@ -21,15 +20,10 @@ export function Header({ title, showBack, onBack }: HeaderProps) {
             ) : (
               <DoorOpen className="text-primary" />
             )}
-            <h1 className="font-headline-md text-headline-md font-bold text-primary">
+            <h1 className="font-headline-md text-xl text-headline-md font-bold text-primary">
               {title}
             </h1>
           </div>
-          <Avatar
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8k5zoBSyl5_G_O3WmvWRLstHqlmAuDHYpYq3VJJFM2otWM8BvLgAgEktQM950oJj4eK9aQw6xQMok68d5mVVglb9IxmLEZ50uPUf4ct0XefVmof0O4RQG9p9zrN_rNmUjRQLkxLpc4ga4lP4ORbDkaxxe2uTkjjl74jsQyPnU4HAxume-63YbWS9ILVxZgW27dj3IyPilTztlCuHW4XEzekrcdPXOI_p9DoR6pyVajXGzNqZTrD8PmLdxTsBl8KRRc7AkK1Wg5f14"
-            alt="Lucas Silva"
-            fallback="LS"
-          />
         </div>
       </header>
     </div>

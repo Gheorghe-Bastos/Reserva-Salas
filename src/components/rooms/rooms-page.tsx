@@ -110,7 +110,7 @@ export function RoomsPage({ onNavigate }: RoomsPageProps) {
               <select
                 value={todayRoomFilter}
                 onChange={(e) => setTodayRoomFilter(e.target.value)}
-                className="appearance-none bg-surface border border-outline-variant rounded-lg px-3 py-2 font-label-md text-label-md text-on-surface cursor-pointer pr-8"
+                className="appearance-none font-bold bg-surface border border-outline-variant rounded-lg px-3 py-2 font-label-lg text-label-lg text-on-surface cursor-pointer pr-8"
               >
                 <option value="">Todas as salas</option>
                 {rooms.map((room) => (
