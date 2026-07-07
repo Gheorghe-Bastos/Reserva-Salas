@@ -3,7 +3,7 @@ requisitos obrigatorios obtidos:
 1. CRUD de reservas persistido no banco — criar, listar, editar e remover;
 2. Estados derivados da reserva: em andamento agora, próximas, encerradas;
 3. Validação de entrada consistente (campos obrigatórios, fim > ínicio);
-4. Listagem com filtro por sala e ordenação por horário
+4. Listagem com filtro por sala e ordenação por horário 
 5. A sala deve conter um numero minimo e maximo de pessoas, deve-se calcular
 o numero de pessoas na reserva para não exceder a capacidade da sala;
 6. Duas reservas na mesma sala não podem se sobrepor no tempo. Ao criar ou editar, o sistema deve 

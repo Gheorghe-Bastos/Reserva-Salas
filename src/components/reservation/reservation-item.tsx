@@ -1,4 +1,4 @@
-import { ChevronRight, User } from "lucide-react"
+import { ChevronRight, DoorOpen, User } from "lucide-react"
 import { cn } from "../../lib/utils"
 import { useReservationStatus, formatTimeRange } from "../../hooks/useReservationStatus"
 import type { ReservationWithRoom } from "../../types/reservation"
@@ -42,6 +42,10 @@ export function ReservationItem({ reservation, onClick }: ReservationItemProps) 
         <h3 className="font-headline-md text-headline-md text-on-surface">
           {reservation.reservation_name}
         </h3>
+        <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+          <DoorOpen size={16} />
+          {reservation.room_name}
+        </p>
         <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
           <User size={16} />
           {reservation.participant_name} · {reservation.participants_count} participantes

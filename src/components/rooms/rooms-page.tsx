@@ -21,7 +21,8 @@ export function RoomsPage({ onNavigate }: RoomsPageProps) {
   const [todayRoomFilter, setTodayRoomFilter] = useState<string>("")
 
   const { ongoing, upcoming, finished } = useMemo(() => {
-    const todayStr = now.toISOString().split("T")[0]
+    const pad = (n: number) => String(n).padStart(2, "0")
+    const todayStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
     const today = allReservations
       .filter((r) => r.starts_at.startsWith(todayStr))
       .filter((r) => !todayRoomFilter || r.room_id === todayRoomFilter)

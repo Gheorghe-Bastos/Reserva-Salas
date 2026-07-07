@@ -85,6 +85,14 @@ function ReservationForm({
     if (!end) errors.ends_at = "Horário de término é obrigatório"
     if (start && end && start >= end)
       errors.ends_at = "Término deve ser após o início"
+    if (start && start < "08:00")
+      errors.starts_at = "Reservas só são permitidas a partir das 08:00"
+    if (end && end > "18:00")
+      errors.ends_at = "Reservas só são permitidas até as 18:00"
+
+    const day = new Date().getDay()
+    if (day === 0 || day === 6)
+      errors.starts_at = "Reservas não permitidas em finais de semana"
     setFieldErrors(errors)
     return Object.keys(errors).length === 0
   }
