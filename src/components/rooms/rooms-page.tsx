@@ -54,7 +54,7 @@ export function RoomsPage({ onNavigate }: RoomsPageProps) {
     <div className="bg-background text-on-surface min-h-screen pb-24 md:pb-0 md:pt-16">
       <Header title="ReserveSuíte" />
 
-      <main className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-8">
+      <main className="max-w-[1040px] mx-auto px-margin-mobile md:px-margin-desktop pt-24 pb-8">
         <header className="mb-8">
           <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2">
             Selecione uma Sala

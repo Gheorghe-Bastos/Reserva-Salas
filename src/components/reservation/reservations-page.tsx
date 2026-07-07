@@ -126,7 +126,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
     <div className="bg-background text-on-surface min-h-screen pb-32">
       <Header title={`Reservas - ${roomName}`} showBack onBack={onBack} />
 
-      <main className="mt-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+      <main className="mt-20 px-margin-mobile md:px-margin-desktop max-w-[1040px] mx-auto">
         {error && (
           <div className="bg-error-container text-on-error-container p-3 rounded-xl flex items-center gap-2 mb-4">
             <AlertCircle size={18} />
