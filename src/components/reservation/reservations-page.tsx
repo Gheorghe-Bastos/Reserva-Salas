@@ -152,19 +152,26 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="relative">
+            <div className="flex flex-col relative gap-2">
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-                className="appearance-none font-bold bg-surface border border-outline-variant rounded-lg px-3 py-2 font-label-lg text-label-lg text-on-surface cursor-pointer pr-8"
+                className="flex justify-center items-center appearance-none font-bold bg-surface border border-outline-variant rounded-xl px-3 py-2 font-label-lg text-label-lg text-on-surface cursor-pointer pr-8"
               >
                 <option value="asc">Horário ↑</option>
                 <option value="desc">Horário ↓</option>
               </select>
               <Clock
                 size={16}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none"
+                className="absolute right-12 top-3 text-outline pointer-events-none"
               />
+              <Button
+                onClick={handleNewReservation}
+                className="shadow-lg gap-2 px-4 rounded-xl"
+              >
+                <Plus size={20} />
+                <span className="font-label-bold text-label-bold">Criar Reserva</span>
+              </Button>
             </div>
           </div>
         </div>
@@ -189,13 +196,7 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
         )}
       </main>
 
-      <Button
-        onClick={handleNewReservation}
-        className="fixed bottom-24 right-40 z-40 shadow-lg gap-2 px-4 h-14 rounded-xl"
-      >
-        <Plus size={20} />
-        <span className="font-label-bold text-label-bold">Criar Reserva</span>
-      </Button>
+
 
 
       <ReservationModal

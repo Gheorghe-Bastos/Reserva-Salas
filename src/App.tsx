@@ -18,7 +18,7 @@ function ReservationsRoute() {
   const { roomName } = useParams<{ roomName: string }>()
 
   function handleBack() {
-    navigate("/")
+    navigate("/", { replace: true })
   }
 
   return <ReservationsPage roomName={roomName ?? "Sala"} onBack={handleBack} />
