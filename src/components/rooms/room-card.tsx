@@ -55,26 +55,14 @@ export function RoomCard({ room, onReserve, onInfo }: RoomCardProps) {
             <h3 className="font-headline-md text-headline-md text-on-surface mb-1">
               {room.name}
             </h3>
-            <div className="flex items-center gap-1 text-on-surface-variant">
-              <Users size={16} />
-              <span className="font-label-md text-label-md">{capacityLabel}</span>
-            </div>
+
           </div>
-          <div className="flex gap-1">
-            {amenities.map((amenity) => {
-              const Icon = amenityIcons[amenity.icon]
-              if (!Icon) return null
-              return (
-                <Icon
-                  key={amenity.icon}
-                  size={20}
-                  className="text-outline"
-                  title={amenity.title}
-                />
-              )
-            })}
+          <div className="flex items-center gap-1 text-on-surface-variant">
+            <Users size={16} />
+            <span className="font-label-md text-label-md">{capacityLabel}</span>
           </div>
         </div>
+
         <div className="mt-auto pt-4 flex gap-3">
           {isUnavailable ? (
             <Button
@@ -92,13 +80,6 @@ export function RoomCard({ room, onReserve, onInfo }: RoomCardProps) {
               RESERVAR AGORA
             </Button>
           )}
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => onInfo?.(room)}
-          >
-            <Info size={20} />
-          </Button>
         </div>
       </CardContent>
     </Card>

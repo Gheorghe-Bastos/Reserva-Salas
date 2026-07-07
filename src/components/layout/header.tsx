@@ -14,7 +14,7 @@ export function Header({ title, showBack, onBack }: HeaderProps) {
         <div className="flex items-center justify-around w-full gap-3">
           <div className="flex items-center gap-3">
             {showBack ? (
-              <Button variant="ghost" size="icon" onClick={onBack}>
+              <Button variant="outline" size="icon" onClick={onBack}>
                 <ArrowLeft className="text-primary" />
               </Button>
             ) : (
