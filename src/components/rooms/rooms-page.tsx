@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react"
 import { AlertCircle, Clock, DoorOpen } from "lucide-react"
 import { Header } from "../layout/header"
-import { Footer } from "../layout/footer"
 import { RoomCard } from "./room-card"
 import { ReservationItem } from "../reservation/reservation-item"
 import { useRooms } from "../../hooks/useRooms"
@@ -231,7 +230,6 @@ export function RoomsPage({ onNavigate }: RoomsPageProps) {
         </section>
       </main>
 
-      <Footer activeTab="rooms" />
     </div>
   )
 }

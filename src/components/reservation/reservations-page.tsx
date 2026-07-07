@@ -1,7 +1,6 @@
 import { useState, useMemo, useCallback } from "react"
 import { Plus, DoorOpen, Clock, AlertCircle } from "lucide-react"
 import { Header } from "../layout/header"
-import { Footer } from "../layout/footer"
 import { Button } from "../ui/button"
 import { ReservationItem } from "./reservation-item"
 import { ReservationModal } from "./reservation-modal"
@@ -198,7 +197,6 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
         <Plus size={32} />
       </Button>
 
-      <Footer activeTab="rooms" />
 
       <ReservationModal
         open={modalOpen}
