@@ -10,7 +10,7 @@ interface HeaderProps {
 export function Header({ title, showBack, onBack }: HeaderProps) {
   return (
     <div className="flex justify-center items-center w-full">
-      <header className="flex justify-center items-center fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex justify-between items-center px-gutter">
+      <header className="fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex justify-between items-center px-gutter">
         <div className="flex items-center justify-around w-full gap-3">
           <div className="flex items-center gap-3">
             {showBack ? (
