@@ -77,6 +77,8 @@ function ReservationForm({
     const errors: Record<string, string> = {}
     if (!reservationName.trim()) errors.reservation_name = "Nome da reserva é obrigatório"
     if (!participantName.trim()) errors.participant_name = "Nome do responsável é obrigatório"
+    else if (/\d/.test(participantName))
+      errors.participant_name = "Nome não pode conter números"
     if (!participantsCount.trim() || Number(participantsCount) < 1)
       errors.participants_count = "Quantidade mínima é 1"
     else if (Number(participantsCount) > roomCapacity)
@@ -171,7 +173,7 @@ function ReservationForm({
           id="inputParticipantName"
           placeholder="Digite o nome do responsável"
           value={participantName}
-          onChange={(e) => setParticipantName(e.target.value)}
+          onChange={(e) => setParticipantName(e.target.value.replace(/\d/g, ""))}
         />
         {fieldErrors.participant_name && (
           <p className="text-error text-body-xs mt-1">{fieldErrors.participant_name}</p>
@@ -221,14 +223,14 @@ function ReservationForm({
       </div>
 
       <DialogFooter>
-        <Button type="submit" className="w-full" disabled={saving}>
+        <Button type="submit" className="w-full cursor-pointer" disabled={saving}>
           {saving ? "Salvando..." : "Salvar Reserva"}
         </Button>
         {isEdit && (
           <Button
             type="button"
             variant="destructive"
-            className="w-full flex items-center justify-center gap-2"
+            className="w-full flex cursor-pointer items-center justify-center gap-2"
             onClick={handleDelete}
             disabled={saving}
           >

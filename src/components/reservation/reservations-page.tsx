@@ -156,21 +156,21 @@ export function ReservationsPage({ roomName = "Sala Ártico", onBack }: Reservat
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-                className="flex justify-center items-center appearance-none font-bold bg-surface border border-outline-variant rounded-xl px-3 py-2 font-label-lg text-label-lg text-on-surface cursor-pointer pr-8"
+                className="flex justify-center items-center appearance-none font-bold bg-surface border border-outline-variant rounded-xl px-3 py-2 font-label-lg text-sm md:text-md md:text-label-lg lg:text-label-lg text-on-surface cursor-pointer pr-8"
               >
                 <option value="asc">Horário ↑</option>
                 <option value="desc">Horário ↓</option>
               </select>
               <Clock
                 size={16}
-                className="absolute right-12 top-3 text-outline pointer-events-none"
+                className="absolute right-6 md:right-12 lg:right-12 top-3 text-outline pointer-events-none"
               />
               <Button
                 onClick={handleNewReservation}
-                className="shadow-lg gap-2 px-4 rounded-xl"
+                className="shadow-lg gap-2 px-4 w-[120px] md:w-[150px] lg:w-[150px] cursor-pointer rounded-xl"
               >
                 <Plus size={20} />
-                <span className="font-label-bold text-label-bold">Criar Reserva</span>
+                <span className="font-label-bold text-xs md:text-md lg:text-md font-extrabold text-label-bold">Criar Reserva</span>
               </Button>
             </div>
           </div>

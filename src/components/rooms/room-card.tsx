@@ -32,14 +32,14 @@ export function RoomCard({ room, onReserve }: RoomCardProps) {
           {isUnavailable ? (
             <Button
               variant="outline"
-              className="flex-grow bg-surface-variant text-on-surface-variant/50 cursor-not-allowed"
+              className="flex-grow cursor-pointer bg-surface-variant text-on-surface-variant/50 cursor-not-allowed"
               disabled
             >
               INDISPONÍVEL
             </Button>
           ) : (
             <Button
-              className="flex-grow"
+              className="flex-grow cursor-pointer"
               onClick={() => onReserve?.(room)}
             >
               RESERVAR AGORA

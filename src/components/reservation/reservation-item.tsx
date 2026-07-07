@@ -24,12 +24,11 @@ export function ReservationItem({ reservation, onClick }: ReservationItemProps) 
       onClick={onClick}
       className={cn(
         "bg-surface p-card-padding rounded-xl shadow-sm border border-transparent",
-        "hover:border-primary/20 transition-all cursor-pointer",
+        "hover:border-primary/20 cursor-pointer",
         "flex justify-between items-center card-hover-effect"
       )}
       style={{
         boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
-        transition: "box-shadow 0.2s ease, transform 0.2s ease",
       }}
     >
       <div className="flex flex-col gap-1">
