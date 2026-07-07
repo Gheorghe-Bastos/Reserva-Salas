@@ -1,18 +1,24 @@
-﻿import { createClient } from '@supabase/supabase-js'
+﻿import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type {Room} from '../types/room'
 import type {Reservation, ReservationWithRoom, ListReservationsFilters, CreateReservationDTO, ConflictResult, UpdateReservationDTO} from '../types/reservation'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY devem estar definidos no .env')
+let supabaseClient: SupabaseClient | null = null
+
+function getClient() {
+  if (!supabaseClient) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY devem estar definidos no .env')
+    }
+    supabaseClient = createClient(supabaseUrl, supabaseAnonKey)
+  }
+  return supabaseClient
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
 export async function listRooms(): Promise<Room[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getClient()
     .from('rooms')
     .select('*')
     .order('name', { ascending: true })
@@ -27,7 +33,7 @@ export async function checkReservationConflict(
   endsAt: string,
   excludeId?: string
 ): Promise<ConflictResult> {
-  let query = supabase
+  let query = getClient()
     .from('reservations')
     .select('*, rooms!inner(name)')
     .eq('room_id', roomId)
@@ -64,7 +70,7 @@ export async function checkReservationConflict(
 }
 
 export async function listReservations(filters?: ListReservationsFilters): Promise<ReservationWithRoom[]> {
-  let query = supabase
+  let query = getClient()
     .from('reservations')
     .select('*, rooms(name)')
     .order(filters?.orderBy ?? 'starts_at', { ascending: filters?.orderDirection !== 'desc' })
@@ -113,7 +119,7 @@ export async function listReservations(filters?: ListReservationsFilters): Promi
 }
 
 export async function getReservation(id: string): Promise<ReservationWithRoom | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getClient()
     .from('reservations')
     .select('*, rooms(name)')
     .eq('id', id)
@@ -139,7 +145,7 @@ export async function getReservation(id: string): Promise<ReservationWithRoom | 
 }
 
 export async function createReservation(dto: CreateReservationDTO): Promise<Reservation> {
-  const { data, error } = await supabase
+  const { data, error } = await getClient()
     .from('reservations')
     .insert({
       room_id: dto.room_id,
@@ -165,7 +171,7 @@ export async function updateReservation(id: string, dto: UpdateReservationDTO): 
   if (dto.starts_at !== undefined) updates.starts_at = dto.starts_at
   if (dto.ends_at !== undefined) updates.ends_at = dto.ends_at
 
-  const { data, error } = await supabase
+  const { data, error } = await getClient()
     .from('reservations')
     .update(updates)
     .eq('id', id)
@@ -177,7 +183,7 @@ export async function updateReservation(id: string, dto: UpdateReservationDTO): 
 }
 
 export async function deleteReservation(id: string): Promise<void> {
-  const { error } = await supabase
+  const { error } = await getClient()
     .from('reservations')
     .delete()
     .eq('id', id)
@@ -187,7 +193,7 @@ export async function deleteReservation(id: string): Promise<void> {
 
 export async function clearFinishedReservations(roomId: string): Promise<void> {
   const now = new Date().toISOString()
-  const { error } = await supabase
+  const { error } = await getClient()
     .from('reservations')
     .delete()
     .eq('room_id', roomId)
